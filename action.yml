@@ -30,7 +30,7 @@ runs:
         Write-Output '-------------------------------------------'
         Write-Output 'Action inputs:'
         $params = @{
-            RequiredVersion = '${{ inputs.Version }}'
+            RequiredVersion = "${{ inputs.Version }}"
             Verbose         = [System.Convert]::ToBoolean('${{ inputs.Verbose }}')
             WhatIf          = [System.Convert]::ToBoolean('${{ inputs.WhatIf }}')
         }
