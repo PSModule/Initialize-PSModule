@@ -33,5 +33,5 @@ runs:
         Write-Output '::endgroup::'
 
         Write-Output '::group::[Initialize-PSModule] - Installing PSModule.FX...'
-        Install-Module -Name PSModule.FX -Force @params
+        Install-Module -Name PSModule.FX -RequiredVersion 0.0.7 -Force @params
         Write-Output '::endgroup::'
