@@ -1,0 +1,37 @@
+name: 'Initialize-PSModule'
+description: 'Initialize/Install PSModule framework on the runner'
+branding:
+  icon: activity
+  color: blue
+
+inputs:
+  Verbose:
+    description: 'Enable verbose output.'
+    required: false
+    default: 'false'
+  WhatIf:
+    description: 'Run in WhatIf mode.'
+    required: false
+    default: 'false'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Run Initialize-PSModule
+      shell: pwsh
+      run: |
+        # Initialize-PSModule
+
+        Write-Output '::group::[Initialize-PSModule] - Initializing...'
+        Write-Output '-------------------------------------------'
+        Write-Output 'Action inputs:'
+        $params = @{
+            Verbose = [System.Convert]::ToBoolean('${{ inputs.Verbose }}')
+            WhatIf  = [System.Convert]::ToBoolean('${{ inputs.WhatIf }}')
+        }
+        $params.GetEnumerator() | Sort-Object -Property Name
+
+        Write-Output '-------------------------------------------'
+        Install-Module -Name PSModule.FX @params
+        Write-Output '-------------------------------------------'
+        Write-Output '::endgroup::'
