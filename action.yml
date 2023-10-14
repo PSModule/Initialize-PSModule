@@ -30,8 +30,8 @@ runs:
             WhatIf  = [System.Convert]::ToBoolean('${{ inputs.WhatIf }}')
         }
         $params.GetEnumerator() | Sort-Object -Property Name
+        Write-Output '::endgroup::'
 
-        Write-Output '-------------------------------------------'
+        Write-Output '::group::[Initialize-PSModule] - Installing PSModule.FX...'
         Install-Module -Name PSModule.FX -Force @params
-        Write-Output '-------------------------------------------'
         Write-Output '::endgroup::'
