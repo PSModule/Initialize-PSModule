@@ -32,6 +32,6 @@ runs:
         $params.GetEnumerator() | Sort-Object -Property Name
 
         Write-Output '-------------------------------------------'
-        Install-Module -Name PSModule.FX @params
+        Install-Module -Name PSModule.FX -Force @params
         Write-Output '-------------------------------------------'
         Write-Output '::endgroup::'
