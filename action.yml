@@ -40,3 +40,15 @@ runs:
         Write-Output '::group::[Initialize-PSModule] - Installing PSModule.FX...'
         Install-Module -Name PSModule.FX -Force @params
         Write-Output '::endgroup::'
+
+        Write-Output '::group::[Debug info] - PSVersionTable...'
+        $PSVersionTable
+        Write-Output '::endgroup::'
+
+        Write-Output '::group::[Debug info] - Installed Modules...'
+        Get-Module -ListAvailable | Sort-Object -Property Name
+        Write-Output '::endgroup::'
+
+        Write-Output '::group::[Debug info] - Environment Variables...'
+        Get-ChildItem -Path Env: | Sort-Object -Property Name
+        Write-Output '::endgroup::'
