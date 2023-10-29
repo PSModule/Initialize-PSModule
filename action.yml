@@ -45,8 +45,14 @@ runs:
         $PSVersionTable
         Write-Output '::endgroup::'
 
-        Write-Output '::group::[Debug info] - Installed Modules...'
-        Get-Module -ListAvailable | Sort-Object -Property Name
+        $modules = Get-Module -ListAvailable
+
+        Write-Output '::group::[Debug info] - Installed Modules - List'
+        $modules | Sort-Object -Property Name | Select Name, Version, CompanyName, Author
+        Write-Output '::endgroup::'
+
+        Write-Output '::group::[Debug info] - Installed Modules - Details'
+        $modules | Sort-Object -Property Name
         Write-Output '::endgroup::'
 
         Write-Output '::group::[Debug info] - Environment Variables...'
