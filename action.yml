@@ -26,7 +26,7 @@ runs:
       run: |
         # Initialize-PSModule
 
-        Write-Output '::group::Initializing...'
+        Write-Host '::group::Initializing...'
         Write-Output '-------------------------------------------'
         Write-Output 'Action inputs:'
         $params = @{
@@ -35,26 +35,26 @@ runs:
             WhatIf          = [System.Convert]::ToBoolean('${{ inputs.WhatIf }}')
         }
         $params.GetEnumerator() | Sort-Object -Property Name
-        Write-Output '::endgroup::'
+        Write-Host '::endgroup::'
 
-        Write-Output '::group::[Initialize-PSModule] - Installing PSModule.FX...'
+        Write-Host '::group::[Initialize-PSModule] - Installing PSModule.FX...'
         Install-Module -Name PSModule.FX -Force @params
-        Write-Output '::endgroup::'
+        Write-Host '::endgroup::'
 
-        Write-Output '::group::[Debug info] - PSVersionTable...'
+        Write-Host '::group::[Debug info] - PSVersionTable...'
         $PSVersionTable
-        Write-Output '::endgroup::'
+        Write-Host '::endgroup::'
 
         $modules = Get-Module -ListAvailable
 
-        Write-Output '::group::[Debug info] - Installed Modules - List'
+        Write-Host '::group::[Debug info] - Installed Modules - List'
         $modules | Sort-Object -Property Name | Select Name, Version, CompanyName, Author
-        Write-Output '::endgroup::'
+        Write-Host '::endgroup::'
 
-        Write-Output '::group::[Debug info] - Installed Modules - Details'
+        Write-Host '::group::[Debug info] - Installed Modules - Details'
         $modules | Sort-Object -Property Name
-        Write-Output '::endgroup::'
+        Write-Host '::endgroup::'
 
-        Write-Output '::group::[Debug info] - Environment Variables...'
+        Write-Host '::group::[Debug info] - Environment Variables...'
         Get-ChildItem -Path Env: | Sort-Object -Property Name
-        Write-Output '::endgroup::'
+        Write-Host '::endgroup::'
