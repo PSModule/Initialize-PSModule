@@ -16,13 +16,14 @@ on:
       - action.yml
       - .github/workflows/Action-Test.yml
       - scripts/**
-env:
-  COMMIT_SHA: ${{ github.sha }}
 
 jobs:
   DefaultTest:
     name: Test Action - [Default]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
       - name: Initialize environment
-        uses: PSModule/Initialize-PSModule@${{ env.COMMIT_SHA }}
+        uses: ./
