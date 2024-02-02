@@ -3,9 +3,9 @@
     [switch] $Verbose,
     [switch] $WhatIf
 )
-$pshost = Get-Host
-$pswindow = $pshost.UI.RawUI
-$pswindow
+
+$bufferWidth = [Console]::BufferWidth
+Write-Output $bufferWidth
 
 Write-Output '::group::Initializing...'
 Write-Output '-------------------------------------------'
