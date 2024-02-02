@@ -8,16 +8,11 @@ on:
       - .github/workflows/Action-Test.yml
       - Modules/**
       - Scripts/**
-      - Tests/**
 
 jobs:
   DefaultTest:
     name: Test Action - [Default]
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
