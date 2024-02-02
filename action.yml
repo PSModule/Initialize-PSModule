@@ -1,32 +1,30 @@
-name: 'Initialize-PSModule'
-description: 'Initialize/Install PSModule framework on the runner'
+name: Initialize-PSModule
+description: Initialize/Install PSModule framework on the runner
 branding:
   icon: activity
   color: blue
 
 inputs:
   Version:
-    description: 'The version of the module to install.'
+    description: The version of the module to install.
     required: false
     default: $null
   Verbose:
-    description: 'Enable verbose output.'
+    description: Enable verbose output.
     required: false
     default: 'true'
   WhatIf:
-    description: 'Run in WhatIf mode.'
+    description: Run in WhatIf mode.
     required: false
     default: 'false'
 
 runs:
-  using: 'composite'
+  using: composite
   steps:
     - name: Run Initialize-PSModule
       shell: pwsh
       run: |
-        # Initialize-PSModule
-
-        Write-Host '::group::Initializing...'
+        Write-Output '::group::Initialize-PSModule'
         Write-Output '-------------------------------------------'
         Write-Output 'Action inputs:'
         $params = @{
@@ -35,30 +33,6 @@ runs:
             WhatIf          = [System.Convert]::ToBoolean('${{ inputs.WhatIf }}')
         }
         $params.GetEnumerator() | Sort-Object -Property Name
-        Write-Host '::endgroup::'
-
-        Write-Host '::group::[Initialize-PSModule] - Installing PSModule.FX...'
-        Install-Module -Name PSModule.FX -Force @params
-        Write-Host '::endgroup::'
-
-        Write-Host '::group::[Debug info] - PSVersionTable...'
-        $PSVersionTable
-        Write-Host '::endgroup::'
-
-        $modules = Get-Module -ListAvailable | Sort-Object -Property Name
-
-        Write-Host '::group::[Debug info] - Installed Modules - List'
-        $modules | Select-Object Name, Version, CompanyName, Author | Format-Table -AutoSize
-        Write-Host '::endgroup::'
-
-        Write-Host '::group::[Debug info] - Installed Modules - Details'
-        $modules.Name | Select-Object -Unique | ForEach-Object {
-            Write-Host "::group::[Debug info] - Installed Modules - Details - [$_]"
-            Write-Verbose ($modules | Where-Object { $_.Name -eq $_ } | Select-Object * | Out-String)
-            Write-Host '::endgroup::'
-        }
-        Write-Host '::endgroup::'
-
-        Write-Host '::group::[Debug info] - Environment Variables...'
-        Get-ChildItem -Path Env: | Sort-Object -Property Name
-        Write-Host '::endgroup::'
+        Write-Output '-------------------------------------------'
+        . "$env:GITHUB_ACTION_PATH\scripts\main.ps1" @params
+        Write-Output '::endgroup::'

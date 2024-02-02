@@ -1,0 +1,26 @@
+name: Process modules in repo
+
+on:
+  workflow_call:
+  push:
+    paths:
+      - action.yml
+      - .github/workflows/Action-Test.yml
+      - Modules/**
+      - Scripts/**
+      - Tests/**
+
+jobs:
+  DefaultTest:
+    name: Test Action - [Default]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Initialize environment
+        uses: PSModule/Initialize-PSModule@main
