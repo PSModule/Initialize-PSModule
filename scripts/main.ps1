@@ -4,17 +4,6 @@
     [switch] $WhatIf
 )
 
-$PSHost = Get-Host
-$PSWindow = $PSHost.UI.RawUI
-
-$newSize = $PSWindow.BufferSize
-$newSize.Width = 300
-$PSWindow.BufferSize = $newSize
-
-$newSize = $PSWindow.WindowSize
-$newSize.Width = 300
-$PSWindow.WindowSize = $newSize
-
 Write-Output '::group::Initializing...'
 Write-Output '-------------------------------------------'
 Write-Output 'Action inputs:'
@@ -31,27 +20,27 @@ Install-Module -Name PSModule.FX -Force @params
 Write-Output '::endgroup::'
 
 Write-Output '::group::[Debug info] - PSVersionTable...'
-Write-Verbose ($PSVersionTable | Format-Table -AutoSize | Out-String) -Verbose
+$PSVersionTable | Format-Table -AutoSize
 Write-Output '::endgroup::'
 
 Write-Output '::group::[Debug info] - Installed Modules - List'
 $modules = Get-Module -ListAvailable | Sort-Object -Property Name
-Write-Verbose ($modules | Select-Object Name, Version, CompanyName, Author | Format-Table -AutoSize | Out-String) -Verbose
+$modules | Select-Object Name, Version, CompanyName, Author | Format-Table -AutoSize -Wrap
 Write-Output '::endgroup::'
 
 Write-Output '::group::[Debug info] - Installed Modules - Details'
 $modules.Name | Select-Object -Unique | ForEach-Object {
     $name = $_
     Write-Output "::group::[Debug info] - Installed Modules - Details - [$name]"
-    Write-Verbose ($modules | Where-Object Name -EQ $name | Select-Object * | Out-String) -Verbose
+    $modules | Where-Object Name -EQ $name | Select-Object *
     Write-Output '::endgroup::'
 }
 Write-Output '::endgroup::'
 
 Write-Output '::group::[Debug info] - Environment Variables...'
-Write-Verbose (Get-ChildItem -Path Env: | Select-Object -Property Name, Value | Sort-Object -Property Name | Format-Table -AutoSize | Out-String) -Verbose
+Get-ChildItem -Path Env: | Select-Object -Property Name, Value | Sort-Object -Property Name | Format-Table -AutoSize
 Write-Output '::endgroup::'
 
 Write-Output '::group::[Debug info] - Files and Folders...'
-Write-Verbose (Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse | Select-Object -ExpandProperty FullName | Sort-Object | Out-String) -Verbose
+Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse | Select-Object -ExpandProperty FullName | Sort-Object
 Write-Output '::endgroup::'
