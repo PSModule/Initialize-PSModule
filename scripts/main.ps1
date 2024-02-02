@@ -4,6 +4,8 @@
     [switch] $WhatIf
 )
 
+$bufferWidth = [Console]::BufferWidth = 300
+
 Write-Output '::group::Initializing...'
 Write-Output '-------------------------------------------'
 Write-Output 'Action inputs:'
