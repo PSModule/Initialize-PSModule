@@ -54,7 +54,7 @@ runs:
         Write-Host '::group::[Debug info] - Installed Modules - Details'
         $modules.Name | Select-Object -Unique | ForEach-Object {
             Write-Host "::group::[Debug info] - Installed Modules - Details - [$_]"
-            $modules | Where-Object { $_.Name -eq $_ } | Select-Object *
+            Write-Verbose ($modules | Where-Object { $_.Name -eq $_ } | Select-Object * | Out-String)
             Write-Host '::endgroup::'
         }
         Write-Host '::endgroup::'
