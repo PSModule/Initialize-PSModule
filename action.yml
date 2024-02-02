@@ -24,6 +24,7 @@ runs:
     - name: Run Initialize-PSModule
       shell: pwsh
       run: |
+        Write-Output "Test"
         Write-Output '::group::Initialize-PSModule'
         Write-Output '-------------------------------------------'
         Write-Output 'Action inputs:'
