@@ -38,7 +38,7 @@ $modules.Name | Select-Object -Unique | ForEach-Object {
 Write-Output '::endgroup::'
 
 Write-Output '::group::[Debug info] - Environment Variables...'
-Get-ChildItem -Path Env: | Select-Object -Property Name, Value | Sort-Object -Property Name | Format-Table -AutoSize
+Get-ChildItem -Path Env: | Select-Object -Property Name, Value | Sort-Object -Property Name | Format-Table -AutoSize -Wrap
 Write-Output '::endgroup::'
 
 Write-Output '::group::[Debug info] - Files and Folders...'
