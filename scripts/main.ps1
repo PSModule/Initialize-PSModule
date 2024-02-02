@@ -25,19 +25,20 @@ Write-Output '::endgroup::'
 
 Write-Output '::group::[Debug info] - Installed Modules - List'
 $modules = Get-Module -ListAvailable | Sort-Object -Property Name
-$modules | Select-Object Name, Version, CompanyName, Author | Format-Table -AutoSize
+$modules | Select-Object Name, Version, CompanyName, Author | Format-Table -AutoSize -Wrap
 Write-Output '::endgroup::'
 
 Write-Output '::group::[Debug info] - Installed Modules - Details'
 $modules.Name | Select-Object -Unique | ForEach-Object {
-    Write-Output "::group::[Debug info] - Installed Modules - Details - [$_]"
-    Write-Verbose ($modules | Where-Object { $_.Name -eq $_ } | Select-Object * | Out-String)
+    $name = $_
+    Write-Output "::group::[Debug info] - Installed Modules - Details - [$name]"
+    $modules | Where-Object Name -EQ $name | Select-Object *
     Write-Output '::endgroup::'
 }
 Write-Output '::endgroup::'
 
 Write-Output '::group::[Debug info] - Environment Variables...'
-Get-ChildItem -Path Env: | Sort-Object -Property Name
+Get-ChildItem -Path Env: | Select-Object -Property Name, Value | Sort-Object -Property Name | Format-Table -AutoSize -Wrap
 Write-Output '::endgroup::'
 
 Write-Output '::group::[Debug info] - Files and Folders...'

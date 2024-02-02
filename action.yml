@@ -25,14 +25,12 @@ runs:
       shell: pwsh
       run: |
         Write-Output '::group::Initialize-PSModule'
-        Write-Output '-------------------------------------------'
         Write-Output 'Action inputs:'
         $params = @{
-            RequiredVersion = "${{ inputs.Version }}"
-            Verbose         = [System.Convert]::ToBoolean('${{ inputs.Verbose }}')
-            WhatIf          = [System.Convert]::ToBoolean('${{ inputs.WhatIf }}')
+            Version = "${{ inputs.Version }}"
+            Verbose = [System.Convert]::ToBoolean('${{ inputs.Verbose }}')
+            WhatIf  = [System.Convert]::ToBoolean('${{ inputs.WhatIf }}')
         }
         $params.GetEnumerator() | Sort-Object -Property Name
-        Write-Output '-------------------------------------------'
         . "$env:GITHUB_ACTION_PATH\scripts\main.ps1" @params
         Write-Output '::endgroup::'
