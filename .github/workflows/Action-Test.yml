@@ -23,4 +23,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize environment
-        uses: PSModule/Initialize-PSModule@${{ github.sha }}
+        uses: PSModule/Initialize-PSModule@${{ github.ref }}
