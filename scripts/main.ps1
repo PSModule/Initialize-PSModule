@@ -30,8 +30,9 @@ Write-Output '::endgroup::'
 
 Write-Output '::group::[Debug info] - Installed Modules - Details'
 $modules.Name | Select-Object -Unique | ForEach-Object {
-    Write-Output "::group::[Debug info] - Installed Modules - Details - [$_]"
-    $modules | Where-Object { $_.Name -eq $_ } | Select-Object *
+    $name = $_
+    Write-Output "::group::[Debug info] - Installed Modules - Details - [$name]"
+    $modules | Where-Object Name -eq $name | Select-Object *
     Write-Output '::endgroup::'
 }
 Write-Output '::endgroup::'
