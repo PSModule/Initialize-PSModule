@@ -3,6 +3,8 @@ name: Linter
 on:
   workflow_call:
   push:
+    branches-ignore:
+      - main
     paths:
       - action.yml
       - .github/workflows/Action-Test.yml
