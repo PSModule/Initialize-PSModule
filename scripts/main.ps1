@@ -4,7 +4,16 @@
     [switch] $WhatIf
 )
 
-$bufferWidth = [Console]::BufferWidth = 300
+$PSHost = Get-Host
+$PSWindow = $PSHost.UI.RawUI
+
+$newSize = $PSWindow.BufferSize
+$newSize.Width = 300
+$PSWindow.BufferSize = $newSize
+
+$newSize = $PSWindow.WindowSize
+$newSize.Width = 300
+$PSWindow.WindowSize = $newSize
 
 Write-Output '::group::Initializing...'
 Write-Output '-------------------------------------------'
