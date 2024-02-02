@@ -45,14 +45,18 @@ runs:
         $PSVersionTable
         Write-Host '::endgroup::'
 
-        $modules = Get-Module -ListAvailable
+        $modules = Get-Module -ListAvailable | Sort-Object -Property Name
 
         Write-Host '::group::[Debug info] - Installed Modules - List'
-        $modules | Sort-Object -Property Name | Select Name, Version, CompanyName, Author
+        $modules | Select-Object Name, Version, CompanyName, Author | Format-Table -AutoSize
         Write-Host '::endgroup::'
 
         Write-Host '::group::[Debug info] - Installed Modules - Details'
-        $modules | Sort-Object -Property Name
+        $modules.Name | Select-Object -Unique | ForEach-Object {
+            Write-Host "::group::[Debug info] - Installed Modules - Details - [$_]"
+            $modules | Where-Object { $_.Name -eq $_ } | Select-Object *
+            Write-Host '::endgroup::'
+        }
         Write-Host '::endgroup::'
 
         Write-Host '::group::[Debug info] - Environment Variables...'
