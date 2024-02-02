@@ -31,7 +31,7 @@ Write-Output '::endgroup::'
 Write-Output '::group::[Debug info] - Installed Modules - Details'
 $modules.Name | Select-Object -Unique | ForEach-Object {
     Write-Output "::group::[Debug info] - Installed Modules - Details - [$_]"
-    Write-Verbose ($modules | Where-Object { $_.Name -eq $_ } | Select-Object * | Out-String)
+    $modules | Where-Object { $_.Name -eq $_ } | Select-Object *
     Write-Output '::endgroup::'
 }
 Write-Output '::endgroup::'
