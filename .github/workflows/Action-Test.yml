@@ -27,5 +27,5 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Initialize environment
+      - name: Test local action
         uses: ./
