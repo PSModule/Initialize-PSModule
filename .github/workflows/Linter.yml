@@ -12,8 +12,3 @@ jobs:
 
       - name: Lint Code Base
         uses: github/super-linter@latest
-        # uses: docker://ghcr.io/github/super-linter:latest
-        env:
-          DEFAULT_BRANCH: main
-          VALIDATE_JSCPD: false
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
