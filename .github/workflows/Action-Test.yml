@@ -16,6 +16,8 @@ on:
       - action.yml
       - .github/workflows/Action-Test.yml
       - scripts/**
+env:
+  COMMIT_SHA: ${{ github.sha }}
 
 jobs:
   DefaultTest:
@@ -23,4 +25,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Initialize environment
-        uses: PSModule/Initialize-PSModule@${{ github.ref }}
+        uses: PSModule/Initialize-PSModule@${{ env.COMMIT_SHA }}
