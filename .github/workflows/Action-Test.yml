@@ -8,6 +8,14 @@ on:
       - .github/workflows/Action-Test.yml
       - Modules/**
       - Scripts/**
+  pull_request:
+    branches:
+      - main
+    paths:
+      - action.yml
+      - .github/workflows/Action-Test.yml
+      - Modules/**
+      - Scripts/**
 
 jobs:
   DefaultTest:
