@@ -12,3 +12,5 @@ jobs:
 
       - name: Lint Code Base
         uses: github/super-linter@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
