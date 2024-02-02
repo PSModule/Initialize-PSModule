@@ -1,4 +1,4 @@
-name: Process modules in repo
+name: Verify Action
 
 on:
   workflow_call:
@@ -14,7 +14,7 @@ jobs:
     name: Test Action - [Default]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
+      - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Initialize environment
