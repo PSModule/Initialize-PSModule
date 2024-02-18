@@ -8,6 +8,7 @@ inputs:
   Version:
     description: The version of the module to install.
     required: false
+    default: '*'
   Verbose:
     description: Enable verbose output.
     required: false
