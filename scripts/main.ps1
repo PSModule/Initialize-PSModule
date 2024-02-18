@@ -1,13 +1,13 @@
 ﻿Write-Output '::group::Initializing...'
 Write-Output '-------------------------------------------'
 Write-Output 'Action inputs:'
+Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
 $params = @{
-    Name            = 'PSModule.FX'
-    Version         = $env:Version
-    TrustRepository = $true
-    Repository      = 'PSGallery'
-    Verbose         = $env:Verbose -eq 'true'
-    WhatIf          = $env:WhatIf -eq 'true'
+    Name       = 'PSModule.FX'
+    Version    = $env:Version
+    Repository = 'PSGallery'
+    Verbose    = $env:Verbose -eq 'true'
+    WhatIf     = $env:WhatIf -eq 'true'
 }
 $params.GetEnumerator() | Sort-Object -Property Name
 Write-Output '::endgroup::'
