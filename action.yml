@@ -26,16 +26,4 @@ runs:
         Version: ${{ inputs.Version }}
         Verbose: ${{ inputs.Verbose }}
         WhatIf: ${{ inputs.WhatIf }}
-      run: |
-        # Initialize-PSModule
-
-        Write-Output '::group::Initialize-PSModule'
-        Write-Output 'Action inputs:'
-        $params = @{
-            Version = $env:Version
-            Verbose = $env:Verbose -eq 'true'
-            WhatIf  = $env:WhatIf -eq 'true'
-        }
-        $params.GetEnumerator() | Sort-Object -Property Name
-        . "$env:GITHUB_ACTION_PATH\scripts\main.ps1" @params
-        Write-Output '::endgroup::'
+      run: . "$env:GITHUB_ACTION_PATH\scripts\main.ps1"

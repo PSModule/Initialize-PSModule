@@ -1,16 +1,10 @@
-﻿param(
-    [string] $Version,
-    [switch] $Verbose,
-    [switch] $WhatIf
-)
-
-Write-Output '::group::Initializing...'
+﻿Write-Output '::group::Initializing...'
 Write-Output '-------------------------------------------'
 Write-Output 'Action inputs:'
 $params = @{
-    RequiredVersion = $Version
-    Verbose         = $Verbose
-    WhatIf          = $WhatIf
+    RequiredVersion = $env:Version
+    Verbose         = $env:Verbose -eq 'true'
+    WhatIf          = $env:WhatIf -eq 'true'
 }
 $params.GetEnumerator() | Sort-Object -Property Name
 Write-Output '::endgroup::'
