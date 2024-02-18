@@ -2,7 +2,10 @@
 Write-Output '-------------------------------------------'
 Write-Output 'Action inputs:'
 $params = @{
-    RequiredVersion = $env:Version
+    Name            = 'PSModule.FX'
+    Version         = $env:Version
+    TrustRepository = $true
+    Repository      = 'PSGallery'
     Verbose         = $env:Verbose -eq 'true'
     WhatIf          = $env:WhatIf -eq 'true'
 }
@@ -10,7 +13,7 @@ $params.GetEnumerator() | Sort-Object -Property Name
 Write-Output '::endgroup::'
 
 Write-Output '::group::[Initialize-PSModule] - Installing PSModule.FX...'
-Install-Module -Name PSModule.FX -Force @params
+Install-PSResource @params
 Write-Output '::endgroup::'
 
 Write-Output '::group::[Debug info] - PSVersionTable...'
@@ -18,7 +21,7 @@ $PSVersionTable | Format-Table -AutoSize
 Write-Output '::endgroup::'
 
 Write-Output '::group::[Debug info] - Installed Modules - List'
-$modules = Get-Module -ListAvailable | Sort-Object -Property Name
+$modules = Get-PSResource | Sort-Object -Property Name
 $modules | Select-Object Name, Version, CompanyName, Author | Format-Table -AutoSize -Wrap
 Write-Output '::endgroup::'
 
