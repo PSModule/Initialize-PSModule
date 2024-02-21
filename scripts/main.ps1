@@ -1,7 +1,7 @@
 ﻿Write-Output '::group::Initializing...'
 Write-Output '-------------------------------------------'
 
-Install-PSResource -Name Utilities, Pester, PSScriptAnalyzer, platyPS, PowerShellGet, PackageManagement -Version * -TrustRepository
+Install-PSResource -Name Utilities, Pester, PSScriptAnalyzer, platyPS -Version * -TrustRepository
 
 Write-Output '::group::[Debug info] - PSVersionTable...'
 $PSVersionTable | Format-Table -AutoSize
