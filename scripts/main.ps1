@@ -1,23 +1,7 @@
 ﻿Write-Output '::group::Initializing...'
 Write-Output '-------------------------------------------'
-Write-Output 'Action inputs:'
-$PSDefaultParameterValues.Add('Install-PSResource:TrustRepository', $true)
-$PSDefaultParameterValues.Add('Install-PSResource:Repository', 'PSGallery')
 
-$params = @{
-    Name            = 'PSModule.FX'
-    Version         = $env:Version
-    Repository      = 'PSGallery'
-    TrustRepository = $true
-    Verbose         = $env:Verbose -eq 'true'
-    WhatIf          = $env:WhatIf -eq 'true'
-}
-$params.GetEnumerator() | Sort-Object -Property Name
-Write-Output '::endgroup::'
-
-Write-Output '::group::[Initialize-PSModule] - Installing PSModule.FX...'
-Install-PSResource @params
-Write-Output '::endgroup::'
+Install-PSResource -Name Utilities, Pester, PSScriptAnalyzer, platyPS, PowerShellGet, PackageManagement -Version * -TrustRepository
 
 Write-Output '::group::[Debug info] - PSVersionTable...'
 $PSVersionTable | Format-Table -AutoSize
