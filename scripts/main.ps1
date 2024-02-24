@@ -33,7 +33,7 @@ $modules.Name | Select-Object -Unique | ForEach-Object {
 }
 
 Start-LogGroup 'Environment Variables'
-Write-Verbose (Get-ChildItem -Path env: | Select-Object -Property Name, Value | Sort-Object -Property Name| Format-Table | Out-String)
+Write-Verbose (Get-ChildItem -Path env: | Select-Object -Property Name, Value | Sort-Object -Property Name | Format-Table -AutoSize | Out-String)
 Stop-LogGroup
 
 Start-LogGroup 'Files and Folders'
