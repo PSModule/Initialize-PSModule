@@ -28,14 +28,14 @@ Stop-LogGroup
 $modules.Name | Select-Object -Unique | ForEach-Object {
     $name = $_
     Start-LogGroup "Installed Modules - Details - [$name]"
-    Write-Verbose ($modules | Where-Object Name -EQ $name | Select-Object * | Format-List)
+    Write-Verbose ($modules | Where-Object Name -EQ $name | Select-Object * | Out-String)
     Stop-LogGroup
 }
 
 Start-LogGroup 'Environment Variables'
-Write-Verbose (Get-ChildItem -Path Env: | Select-Object -Property Name, Value | Sort-Object -Property Name)
+Write-Verbose (Get-ChildItem -Path Env: | Select-Object -Property Name, Value | Sort-Object -Property Name | Out-String)
 Stop-LogGroup
 
 Start-LogGroup 'Files and Folders'
-Write-Verbose (Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse | Select-Object -ExpandProperty FullName | Sort-Object)
+Write-Verbose (Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse | Select-Object -ExpandProperty FullName | Sort-Object | Out-String)
 Stop-LogGroup
