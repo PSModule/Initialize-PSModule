@@ -17,7 +17,7 @@ Set-GitHubEnv -Name 'GITHUB_REPOSITORY_NAME' -Value $env:GITHUB_REPOSITORY_NAME
 Stop-LogGroup
 
 Start-LogGroup 'PSVersionTable'
-Write-Verbose ($PSVersionTable | Format-Table -AutoSize)
+Write-Verbose ($PSVersionTable | Format-Table -AutoSize | Out-String)
 Stop-LogGroup
 
 Start-LogGroup 'Installed Modules - List'
