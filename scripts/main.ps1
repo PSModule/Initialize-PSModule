@@ -22,7 +22,7 @@ Stop-LogGroup
 
 Start-LogGroup 'Installed Modules - List'
 $modules = Get-PSResource | Sort-Object -Property Name
-Write-Verbose ($modules | Select-Object Name, Version, CompanyName, Author)
+Write-Verbose ($modules | Select-Object Name, Version, CompanyName, Author | Out-String)
 Stop-LogGroup
 
 $modules.Name | Select-Object -Unique | ForEach-Object {
