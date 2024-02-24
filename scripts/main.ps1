@@ -22,22 +22,20 @@ Stop-LogGroup
 
 Start-LogGroup 'Installed Modules - List'
 $modules = Get-PSResource | Sort-Object -Property Name
-$modules | Select-Object Name, Version, CompanyName, Author | Format-Table -AutoSize -Wrap
+Write-Verbose ($modules | Select-Object Name, Version, CompanyName, Author)
 Stop-LogGroup
 
-Start-LogGroup 'Installed Modules - Details'
 $modules.Name | Select-Object -Unique | ForEach-Object {
     $name = $_
     Start-LogGroup "Installed Modules - Details - [$name]"
-    $modules | Where-Object Name -EQ $name | Select-Object *
+    Write-Verbose ($modules | Where-Object Name -EQ $name | Select-Object * | Format-List)
     Stop-LogGroup
 }
-Stop-LogGroup
 
 Start-LogGroup 'Environment Variables'
-Get-ChildItem -Path Env: | Select-Object -Property Name, Value | Sort-Object -Property Name | Format-Table -AutoSize -Wrap
+Write-Verbose (Get-ChildItem -Path Env: | Select-Object -Property Name, Value | Sort-Object -Property Name)
 Stop-LogGroup
 
 Start-LogGroup 'Files and Folders'
-Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse | Select-Object -ExpandProperty FullName | Sort-Object
+Write-Verbose (Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse | Select-Object -ExpandProperty FullName | Sort-Object)
 Stop-LogGroup
