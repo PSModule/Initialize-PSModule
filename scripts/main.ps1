@@ -1,30 +1,43 @@
-﻿Write-Output '::group::Initializing...'
-Write-Output '-------------------------------------------'
+﻿#REQUIRES -Modules Utilities
 
-Install-PSResource -Name Utilities, Pester, PSScriptAnalyzer, platyPS -Version * -TrustRepository
+[CmdletBinding()]
+param()
 
-Write-Output '::group::[Debug info] - PSVersionTable...'
+Install-PSResource -Name 'powershell-yaml', 'Pester', 'PSScriptAnalyzer', 'powershell-yaml', 'platyPS' -TrustRepository -Verbose
+Stop-LogGroup
+
+Start-LogGroup 'Loading helper scripts'
+Get-ChildItem -Path (Join-Path -Path $env:GITHUB_ACTION_PATH -ChildPath 'scripts' 'helpers') -Filter '*.ps1' -Recurse |
+    ForEach-Object { Write-Verbose "[$($_.FullName)]"; . $_.FullName }
+Stop-LogGroup
+
+Start-LogGroup 'Loading inputs'
+$env:GITHUB_REPOSITORY_NAME = $env:GITHUB_REPOSITORY -replace '.+/'
+Set-GitHubEnv -Name 'GITHUB_REPOSITORY_NAME' -Value $env:GITHUB_REPOSITORY_NAME
+Stop-LogGroup
+
+Start-LogGroup 'PSVersionTable'
 $PSVersionTable | Format-Table -AutoSize
-Write-Output '::endgroup::'
+Stop-LogGroup
 
-Write-Output '::group::[Debug info] - Installed Modules - List'
+Start-LogGroup 'Installed Modules - List'
 $modules = Get-PSResource | Sort-Object -Property Name
 $modules | Select-Object Name, Version, CompanyName, Author | Format-Table -AutoSize -Wrap
-Write-Output '::endgroup::'
+Stop-LogGroup
 
-Write-Output '::group::[Debug info] - Installed Modules - Details'
+Start-LogGroup 'Installed Modules - Details'
 $modules.Name | Select-Object -Unique | ForEach-Object {
     $name = $_
-    Write-Output "::group::[Debug info] - Installed Modules - Details - [$name]"
+    Start-LogGroup "Installed Modules - Details - [$name]"
     $modules | Where-Object Name -EQ $name | Select-Object *
-    Write-Output '::endgroup::'
+    Stop-LogGroup
 }
-Write-Output '::endgroup::'
+Stop-LogGroup
 
-Write-Output '::group::[Debug info] - Environment Variables...'
+Start-LogGroup 'Environment Variables'
 Get-ChildItem -Path Env: | Select-Object -Property Name, Value | Sort-Object -Property Name | Format-Table -AutoSize -Wrap
-Write-Output '::endgroup::'
+Stop-LogGroup
 
-Write-Output '::group::[Debug info] - Files and Folders...'
+Start-LogGroup 'Files and Folders'
 Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse | Select-Object -ExpandProperty FullName | Sort-Object
-Write-Output '::endgroup::'
+Stop-LogGroup
