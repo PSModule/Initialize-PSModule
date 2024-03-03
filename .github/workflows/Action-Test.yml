@@ -1,0 +1,16 @@
+name: Action-Test
+
+run-name: "Action-Test - [${{ github.event.pull_request.title }} #${{ github.event.pull_request.number }}] by @${{ github.actor }}"
+
+on: [pull_request]
+
+jobs:
+  ActionTestDefault:
+    name: Action-Test - [Default]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Action-Test
+        uses: ./

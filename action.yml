@@ -1,0 +1,17 @@
+name: Initialize-PSModule
+description: Prepare runner for the PSModule framework
+branding:
+  icon: activity
+  color: blue
+
+runs:
+  using: composite
+  steps:
+    - name: Run Initialize-PSModule
+      shell: pwsh
+      run: |
+        # Initialize-PSModule
+        Write-Host '::group::Loading modules'
+        Install-PSResource -Name 'Utilities' -TrustRepository -Verbose
+
+        . "$env:GITHUB_ACTION_PATH\scripts\main.ps1" -Verbose
