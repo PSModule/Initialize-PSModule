@@ -24,7 +24,7 @@ The Initialize-PSModule action will prepare the runner for the PSModule framewor
 | powershell-yaml | Used to parse and serialize YAML files, typically for reading configuration files. |
 | Pester | Used for testing PowerShell code. |
 | PSScriptAnalyzer | Used to lint and format PowerShell code. |
-| platyPS | Used to generate markdown documentation from PowerShell code. |
+| platyPS | Used to generate Markdown documentation from PowerShell code. |
 
 It also makes the following environment variables available to the runner:
 
