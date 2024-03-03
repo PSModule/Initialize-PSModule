@@ -37,6 +37,11 @@ Write-Verbose (Get-ChildItem -Path env: | Select-Object -Property Name, Value |
         Sort-Object -Property Name | Format-Table -AutoSize -Wrap | Out-String)
 Stop-LogGroup
 
+Start-LogGroup 'PowerShell Variables'
+Write-Verbose (Get-Variable | Select-Object -Property Name, Value |
+        Sort-Object -Property Name | Format-Table -AutoSize -Wrap | Out-String)
+Stop-LogGroup
+
 Start-LogGroup 'Files and Folders'
 Write-Verbose (Get-ChildItem -Path $env:GITHUB_WORKSPACE -Recurse | Select-Object -ExpandProperty FullName | Sort-Object | Out-String)
 Stop-LogGroup
