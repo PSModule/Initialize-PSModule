@@ -1,8 +1,9 @@
-name: Initialize-PSModule
-description: Prepare runner for the PSModule framework
+name: Initialize-PSModule (by PSModule)
+description: Prepare runner for the PSModule framework.
+author: PSModule
 branding:
-  icon: activity
-  color: blue
+  icon: loader
+  color: gray-dark
 
 runs:
   using: composite
