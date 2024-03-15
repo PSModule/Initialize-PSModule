@@ -22,7 +22,8 @@ The Initialize-PSModule action will prepare the runner for the PSModule framewor
 
 | Module | Description |
 | --- | --- |
-| Utilities | Used by all actions, contains common function and classes such as logging, grouping and the [PSSemVer] class. |
+| Utilities | Used by all actions, contains common function and classes such as logging and grouping. |
+| PSSemVer | Used to create an object for the semantic version numbers. Has functionality to compare, and bump versions. |
 | powershell-yaml | Used to parse and serialize YAML files, typically for reading configuration files. |
 | Pester | Used for testing PowerShell code. |
 | PSScriptAnalyzer | Used to lint and format PowerShell code. |

@@ -3,7 +3,7 @@
 [CmdletBinding()]
 param()
 
-Install-PSResource -Name 'powershell-yaml', 'Pester', 'PSScriptAnalyzer', 'platyPS' -TrustRepository -Verbose
+Install-PSResource -Name 'powershell-yaml', 'PSSemVer', 'Pester', 'PSScriptAnalyzer', 'platyPS' -TrustRepository -Verbose
 Stop-LogGroup
 
 Start-LogGroup 'Loading helper scripts'
