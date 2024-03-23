@@ -43,6 +43,7 @@ The action can be configured using the following settings:
 | --- | --- | --- | --- |
 | Version | The version of the Utilities module to install. | '' (latest) | false |
 | Prerelease | Whether to install prerelease versions of the Utilities module. | false | false |
+| Shell | The shell to use for running the tests. | pwsh | false |
 
 ## Example
 
