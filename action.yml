@@ -33,7 +33,7 @@ runs:
           Verbose         = $true
         }
 
-        if ([string]::IsNullOrEmpty($env:GITHUB_ACTION_INPUT_Version)) {
+        if (-not [string]::IsNullOrEmpty($env:GITHUB_ACTION_INPUT_Version)) {
           $params['Version'] = $env:GITHUB_ACTION_INPUT_Version
         }
 
