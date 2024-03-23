@@ -14,5 +14,28 @@ jobs:
 
       - name: Action-Test
         uses: ./
+
+  ActionTestPrerelease:
+    name: Action-Test - [Prerelease]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Action-Test
+        uses: ./
         with:
+          Prerelease: true
+
+  ActionTestVersion:
+    name: Action-Test - [Version]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Action-Test
+        uses: ./
+        with:
+          Version: '[0.1,0.2]'
           Prerelease: true
