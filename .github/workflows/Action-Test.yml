@@ -14,3 +14,5 @@ jobs:
 
       - name: Action-Test
         uses: ./
+        with:
+          Prerelease: true
