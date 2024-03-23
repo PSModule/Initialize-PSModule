@@ -41,11 +41,8 @@ The action can be configured using the following settings:
 
 | Name | Description | Default | Required |
 | --- | --- | --- | --- |
-| | | | |
-
-### Configuration file
-
-There are no configuration settings for the Initialize-PSModule action.
+| Version | The version of the Utilities module to install. | '' (latest) | false |
+| Prerelease | Whether to install prerelease versions of the Utilities module. | false | false |
 
 ## Example
 

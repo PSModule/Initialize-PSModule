@@ -5,14 +5,39 @@ branding:
   icon: loader
   color: gray-dark
 
+inputs:
+  Version:
+    description: The version of the Utilities module to install.
+    required: false
+  Prerelease:
+    description: Whether to install prerelease versions of the Utilities module.
+    required: false
+    default: 'false'
+
 runs:
   using: composite
   steps:
     - name: Run Initialize-PSModule
       shell: pwsh
+      env:
+        GITHUB_ACTION_INPUT_Version: ${{ inputs.Version }}
+        GITHUB_ACTION_INPUT_Prerelease: ${{ inputs.Prerelease }}
       run: |
         # Initialize-PSModule
         Write-Host '::group::Loading modules'
-        Install-PSResource -Name 'Utilities' -TrustRepository -Verbose
+        $params = @{
+          Name            = 'Utilities'
+          Repository      = 'PSGallery'
+          TrustRepository = $true
+          PreRelease      = $env:GITHUB_ACTION_INPUT_Prerelease -eq 'true'
+          Verbose         = $true
+        }
+
+        if ([string]::IsNullOrEmpty($env:GITHUB_ACTION_INPUT_Version)) {
+          $params['Version'] = $env:GITHUB_ACTION_INPUT_Version
+        }
+
+        Install-PSResource @params
+        Write-Host '::endgroup::'
 
         . "$env:GITHUB_ACTION_PATH\scripts\main.ps1" -Verbose
