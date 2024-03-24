@@ -69,3 +69,14 @@ jobs:
 ## Permissions
 
 The action does not require any permissions.
+
+## Compatibility
+
+The action is compatible with the following configurations:
+
+| OS | Shell |
+| --- | --- |
+| windows-latest | pwsh |
+| windows-latest | powershell |
+| macos-latest | pwsh |
+| ubuntu-latest | pwsh |
