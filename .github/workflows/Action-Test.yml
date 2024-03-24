@@ -4,7 +4,7 @@ run-name: "Action-Test - [${{ github.event.pull_request.title }} #${{ github.eve
 
 on: [pull_request]
 
-permissions: []
+permissions: {}
 
 jobs:
   ActionTestDefault:
