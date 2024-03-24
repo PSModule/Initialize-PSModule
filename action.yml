@@ -13,18 +13,24 @@ inputs:
     description: Whether to install prerelease versions of the Utilities module.
     required: false
     default: 'false'
+  Shell:
+    description: The shell to use for running the tests.
+    required: false
+    default: pwsh
 
 runs:
   using: composite
   steps:
     - name: Run Initialize-PSModule
-      shell: pwsh
+      shell: ${{ inputs.Shell }}
       env:
         GITHUB_ACTION_INPUT_Version: ${{ inputs.Version }}
         GITHUB_ACTION_INPUT_Prerelease: ${{ inputs.Prerelease }}
       run: |
         # Initialize-PSModule
         Write-Host '::group::Loading modules'
+        Install-Module -Name 'Microsoft.PowerShell.PSResourceGet' -Force -Verbose
+        Import-Module -Name 'Microsoft.PowerShell.PSResourceGet' -Force -Verbose
         $params = @{
           Name            = 'Utilities'
           Repository      = 'PSGallery'

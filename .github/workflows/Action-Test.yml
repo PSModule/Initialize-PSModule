@@ -6,18 +6,16 @@ on: [pull_request]
 
 jobs:
   ActionTestDefault:
-    name: Action-Test - [Default]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Action-Test
-        uses: ./
-
-  ActionTestPrerelease:
-    name: Action-Test - [Prerelease]
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shell: [pwsh]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - shell: powershell
+            os: windows-latest
+    name: Action-Test - [Default] - [${{ matrix.os }}@${{ matrix.shell }}]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -25,11 +23,40 @@ jobs:
       - name: Action-Test
         uses: ./
         with:
+          Shell: ${{ matrix.shell }}
+
+  ActionTestPrerelease:
+    strategy:
+      fail-fast: false
+      matrix:
+        shell: [pwsh]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - shell: powershell
+            os: windows-latest
+    name: Action-Test - [Prerelease] - [${{ matrix.os }}@${{ matrix.shell }}]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Action-Test
+        uses: ./
+        with:
+          Shell: ${{ matrix.shell }}
           Prerelease: true
 
   ActionTestVersion:
-    name: Action-Test - [Version]
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shell: [pwsh]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - shell: powershell
+            os: windows-latest
+    name: Action-Test - [Version] - [${{ matrix.os }}@${{ matrix.shell }}]
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -37,5 +64,5 @@ jobs:
       - name: Action-Test
         uses: ./
         with:
+          Shell: ${{ matrix.shell }}
           Version: '[0.1,0.2]'
-          Prerelease: true
