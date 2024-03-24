@@ -29,6 +29,8 @@ runs:
       run: |
         # Initialize-PSModule
         Write-Host '::group::Loading modules'
+        Install-Module -Name 'Microsoft.PowerShell.PSResourceGet' -Force -Verbose
+        Import-Module -Name 'Microsoft.PowerShell.PSResourceGet' -Force -Verbose
         $params = @{
           Name            = 'Utilities'
           Repository      = 'PSGallery'
