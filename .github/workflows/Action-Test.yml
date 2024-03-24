@@ -22,6 +22,8 @@ jobs:
 
       - name: Action-Test
         uses: ./
+        with:
+          Shell: ${{ matrix.shell }}
 
   ActionTestPrerelease:
     name: Action-Test - [Prerelease]
