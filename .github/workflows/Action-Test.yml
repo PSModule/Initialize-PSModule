@@ -44,6 +44,7 @@ jobs:
         uses: ./
         with:
           Shell: ${{ matrix.shell }}
+          Prerelease: true
 
   ActionTestVersion:
     strategy:
@@ -64,3 +65,4 @@ jobs:
         uses: ./
         with:
           Shell: ${{ matrix.shell }}
+          Version: '[0.1,0.2]'
