@@ -16,7 +16,6 @@ jobs:
             os: windows-latest
     name: Action-Test - [Default] - [${{ matrix.os }}@${{ matrix.shell }}]
     runs-on: ${{ matrix.os }}
-    runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
