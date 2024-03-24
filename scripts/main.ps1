@@ -7,7 +7,9 @@ Install-PSResource -Name 'powershell-yaml', 'PSSemVer', 'Pester', 'PSScriptAnaly
 Stop-LogGroup
 
 Start-LogGroup 'Loading helper scripts'
-Get-ChildItem -Path (Join-Path -Path $env:GITHUB_ACTION_PATH -ChildPath 'scripts' 'helpers') -Filter '*.ps1' -Recurse |
+$scripts = Join-Path -Path $env:GITHUB_ACTION_PATH -ChildPath 'scripts'
+$helpers = Join-Path -Path $scripts -ChildPath 'helpers'
+Get-ChildItem -Path $helpers -Filter '*.ps1' -Recurse |
     ForEach-Object { Write-Verbose "[$($_.FullName)]"; . $_.FullName }
 Stop-LogGroup
 
