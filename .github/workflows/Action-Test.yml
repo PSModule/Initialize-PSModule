@@ -17,9 +17,6 @@ jobs:
     name: Action-Test - [Default] - [${{ matrix.os }}@${{ matrix.shell }}]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
       - name: Action-Test
         uses: ./
         with:
@@ -37,9 +34,6 @@ jobs:
     name: Action-Test - [Prerelease] - [${{ matrix.os }}@${{ matrix.shell }}]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
       - name: Action-Test
         uses: ./
         with:
@@ -58,9 +52,6 @@ jobs:
     name: Action-Test - [Version] - [${{ matrix.os }}@${{ matrix.shell }}]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
       - name: Action-Test
         uses: ./
         with:
