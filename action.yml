@@ -31,6 +31,7 @@ runs:
         Write-Host '::group::Loading modules'
         Install-Module -Name 'Microsoft.PowerShell.PSResourceGet' -Force -Verbose
         Import-Module -Name 'Microsoft.PowerShell.PSResourceGet' -Force -Verbose
+
         $params = @{
           Name            = 'Utilities'
           Repository      = 'PSGallery'
@@ -38,12 +39,12 @@ runs:
           PreRelease      = $env:GITHUB_ACTION_INPUT_Prerelease -eq 'true'
           Verbose         = $true
         }
-
         if (-not [string]::IsNullOrEmpty($env:GITHUB_ACTION_INPUT_Version)) {
           $params['Version'] = $env:GITHUB_ACTION_INPUT_Version
         }
 
         Install-PSResource @params
+        Import-Module -Name 'Utilities' -Force -Verbose
         Write-Host '::endgroup::'
 
         . "$env:GITHUB_ACTION_PATH\scripts\main.ps1" -Verbose
