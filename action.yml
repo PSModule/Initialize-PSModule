@@ -32,7 +32,7 @@ runs:
         Install-Module -Name 'Microsoft.PowerShell.PSResourceGet' -Force -Verbose
         Import-Module -Name 'Microsoft.PowerShell.PSResourceGet' -Force -Verbose
         Write-Host '::endgroup::'
-        
+
         Write-Host '::group::Loading modules - Utilities'
         $params = @{
           Name            = 'Utilities'
@@ -59,4 +59,7 @@ runs:
         Import-Module -Name 'GitHub' -Force -Verbose
         Write-Host '::endgroup::'
 
-        . "$env:GITHUB_ACTION_PATH\scripts\main.ps1" -Verbose
+        LogGroup 'Running main script' {
+          . "$env:GITHUB_ACTION_PATH\scripts\main.ps1" -Verbose
+        }
+
