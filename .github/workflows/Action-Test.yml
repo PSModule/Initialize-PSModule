@@ -10,6 +10,9 @@ concurrency:
 
 permissions: {}
 
+env:
+  GITHUB_TOKEN: ${{ GITHUB.TOKEN }}
+
 jobs:
   ActionTestDefault:
     strategy:
