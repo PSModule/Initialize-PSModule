@@ -5,7 +5,7 @@ param()
 
 'Utilities', 'powershell-yaml', 'PSSemVer', 'Pester', 'PSScriptAnalyzer', 'platyPS' | ForEach-Object {
     LogGroup "Installing module: [$_]" {
-        Install-Module -Name $_ -Force -AllowClobber -TrustRepository
+        Install-PSResource -Name $_ -TrustRepository -Repository PSGallery
     }
 }
 
