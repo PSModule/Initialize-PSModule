@@ -5,50 +5,13 @@ branding:
   icon: loader
   color: gray-dark
 
-inputs:
-  Version:
-    description: The version of the Utilities module to install.
-    required: false
-  Prerelease:
-    description: Whether to install prerelease versions of the Utilities module.
-    required: false
-    default: 'false'
-  Shell:
-    description: The shell to use for running the tests.
-    required: false
-    default: pwsh
-
 runs:
   using: composite
   steps:
-    - name: Run Initialize-PSModule
-      shell: ${{ inputs.Shell }}
-      env:
-        GITHUB_ACTION_INPUT_Version: ${{ inputs.Version }}
-        GITHUB_ACTION_INPUT_Prerelease: ${{ inputs.Prerelease }}
+    - name: Install GitHub
+      shell: pwsh
       run: |
-        # Initialize-PSModule
-        Write-Host '::group::Loading modules - Microsoft.PowerShell.PSResourceGet'
-        Install-Module -Name 'Microsoft.PowerShell.PSResourceGet' -Force -Verbose
-        Import-Module -Name 'Microsoft.PowerShell.PSResourceGet' -Force -Verbose
-        Write-Host '::endgroup::'
-
-        Write-Host '::group::Loading modules - Utilities'
-        $params = @{
-          Name            = 'Utilities'
-          Repository      = 'PSGallery'
-          TrustRepository = $true
-          PreRelease      = $env:GITHUB_ACTION_INPUT_Prerelease -eq 'true'
-          Verbose         = $true
-        }
-        if (-not [string]::IsNullOrEmpty($env:GITHUB_ACTION_INPUT_Version)) {
-          $params['Version'] = $env:GITHUB_ACTION_INPUT_Version
-        }
-        Install-PSResource @params
-        Import-Module -Name 'Utilities' -Force -Verbose
-        Write-Host '::endgroup::'
-
-        Write-Host '::group::Loading modules - GitHub'
+        # Install GitHub
         $params = @{
           Name            = 'GitHub'
           Repository      = 'PSGallery'
@@ -57,8 +20,8 @@ runs:
         }
         Install-PSResource @params
         Import-Module -Name 'GitHub' -Force -Verbose
-        Write-Host '::endgroup::'
 
-        LogGroup 'Running main script' {
-          . "$env:GITHUB_ACTION_PATH\scripts\main.ps1" -Verbose
-        }
+    - name: Run Initialize-PSModule
+      shell: pwsh
+      run: |
+        . "$env:GITHUB_ACTION_PATH\scripts\main.ps1" -Verbose
