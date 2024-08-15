@@ -22,7 +22,6 @@ runs:
   using: composite
   steps:
     - name: Run Initialize-PSModule
-      id: Initialize-PSModule-internal
       shell: ${{ inputs.Shell }}
       env:
         GITHUB_ACTION_INPUT_Version: ${{ inputs.Version }}
