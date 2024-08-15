@@ -62,4 +62,3 @@ runs:
         LogGroup 'Running main script' {
           . "$env:GITHUB_ACTION_PATH\scripts\main.ps1" -Verbose
         }
-
