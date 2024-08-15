@@ -51,6 +51,7 @@ jobs:
 
       - name: Action-Test
         uses: ./
+        id: Action-Test-workflow
         with:
           Shell: ${{ matrix.shell }}
           Prerelease: true
