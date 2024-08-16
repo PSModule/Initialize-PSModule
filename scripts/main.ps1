@@ -4,14 +4,14 @@
 param()
 
 LogGroup 'Install RequiredResources' {
-    Install-PSResource -RequiredResource @{
+    Install-PSResource -TrustRepository -Repository PSGallery -RequiredResource @{
         Utilities         = @{}
         'powershell-yaml' = @{}
         PSSemVer          = @{}
         Pester            = @{}
         PSScriptAnalyzer  = @{}
         platyPS           = @{}
-    } -TrustRepository -Repository PSGallery
+    }
 }
 
 'Utilities', 'powershell-yaml', 'PSSemVer', 'Pester', 'PSScriptAnalyzer', 'platyPS' | ForEach-Object {
