@@ -7,7 +7,7 @@ param()
     LogGroup "Installing prerequisite: [$_]" {
         Install-PSResource -Name $_ -TrustRepository -Repository PSGallery
         Import-Module -Name $_ -Force
-        Get-Module -Name $_ | Select-Object *
+        Get-Module -Name $_
     }
 }
 
