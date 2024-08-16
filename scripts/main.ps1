@@ -3,22 +3,14 @@
 [CmdletBinding()]
 param()
 
-LogGroup 'Install RequiredResources' {
-    Install-PSResource -TrustRepository -Repository PSGallery -RequiredResource @{
-        Utilities         = @{}
-        'powershell-yaml' = @{}
-        PSSemVer          = @{}
-        Pester            = @{}
-        PSScriptAnalyzer  = @{}
-        platyPS           = @{}
-    }
-}
-
 'Utilities', 'powershell-yaml', 'PSSemVer', 'Pester', 'PSScriptAnalyzer', 'platyPS' | ForEach-Object {
-    LogGroup "Installing prerequisite: [$_]" {
-        Install-PSResource -Name $_ -TrustRepository -Repository PSGallery
-        Import-Module -Name $_
-        Get-Module -Name $_
+    $moduleName = $_
+    LogGroup "Installing prerequisite: [$moduleName]" {
+        Install-PSResource -Name $moduleName -TrustRepository -Repository PSGallery
+        if (-not (Get-Module -Name $moduleName)) {
+            Import-Module -Name $moduleName -Force
+        }
+        Get-Module -Name $moduleName
     }
 }
 
