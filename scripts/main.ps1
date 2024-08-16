@@ -9,7 +9,7 @@ $requiredModules | ForEach-Object {
     $moduleName = $_
     LogGroup "Installing prerequisite: [$moduleName]" {
         Install-PSResource -Name $moduleName -TrustRepository -Repository PSGallery
-        Get-PSResource -Name $moduleName
+        Write-Verbose (Get-PSResource -Name $moduleName | Select-Object * | Out-String)
     }
 }
 
