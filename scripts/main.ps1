@@ -11,7 +11,7 @@ LogGroup 'Install RequiredResources' {
         Pester            = @{}
         PSScriptAnalyzer  = @{}
         platyPS           = @{}
-    }
+    } -TrustRepository -Repository PSGallery
 }
 
 'Utilities', 'powershell-yaml', 'PSSemVer', 'Pester', 'PSScriptAnalyzer', 'platyPS' | ForEach-Object {
