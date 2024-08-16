@@ -4,7 +4,7 @@
 param()
 
 'Utilities', 'powershell-yaml', 'PSSemVer', 'Pester', 'PSScriptAnalyzer', 'platyPS' | ForEach-Object {
-    LogGroup "Installing module: [$_]" {
+    LogGroup "Installing prerequisite: [$_]" {
         Install-PSResource -Name $_ -TrustRepository -Repository PSGallery
         Get-Module -Name $_ | Select-Object *
     }
