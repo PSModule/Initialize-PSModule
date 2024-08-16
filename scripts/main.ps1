@@ -5,7 +5,7 @@ param()
 
 $requiredModules = 'Utilities', 'powershell-yaml', 'PSSemVer', 'Pester', 'PSScriptAnalyzer', 'platyPS'
 
-$requiredModules | ForEach-Object {
+$requiredModules | Sort-Object | ForEach-Object {
     $moduleName = $_
     LogGroup "Installing prerequisite: [$moduleName]" {
         Install-PSResource -Name $moduleName -TrustRepository -Repository PSGallery
