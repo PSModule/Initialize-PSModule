@@ -11,7 +11,7 @@ param()
     }
 }
 
-LogGroup 'Loading helper scripts' {
-    Get-ChildItem -Path (Join-Path -Path $env:GITHUB_ACTION_PATH -ChildPath 'scripts\helpers') -Filter '*.ps1' -Recurse |
-        ForEach-Object { Write-Verbose "[$($_.FullName)]"; . $_.FullName }
-}
+# LogGroup 'Loading helper scripts' {
+#     Get-ChildItem -Path (Join-Path -Path $env:GITHUB_ACTION_PATH -ChildPath 'scripts\helpers') -Filter '*.ps1' -Recurse |
+#         ForEach-Object { Write-Verbose "[$($_.FullName)]"; . $_.FullName }
+# }
