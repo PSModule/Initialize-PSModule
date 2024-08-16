@@ -7,7 +7,7 @@ param()
     $moduleName = $_
     LogGroup "Installing prerequisite: [$moduleName]" {
         Install-PSResource -Name $moduleName -TrustRepository -Repository PSGallery
-        Get-PSResource -Name $moduleName
+        Get-PSResource -Name $moduleName | Select-Object *
     }
 }
 
