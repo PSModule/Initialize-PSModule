@@ -8,7 +8,7 @@ $requiredModules = 'Utilities', 'powershell-yaml', 'PSSemVer', 'Pester', 'PSScri
 $requiredModules | ForEach-Object {
     $moduleName = $_
     LogGroup "Installing prerequisite: [$moduleName]" {
-        Install-PSResource -Name $moduleName -TrustRepository -Repository PSGallery
+        Install-PSResource -Name $moduleName -TrustRepository -Repository PSGallery -Verbose:$false
     }
 }
 
