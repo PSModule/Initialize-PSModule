@@ -12,7 +12,7 @@ $requiredModules | ForEach-Object {
     }
 }
 
-Get-PSResource -Name $requiredModules -Verbose:$false
+Get-PSResource -Name $requiredModules -Verbose:$false | Sort-Object -Property Name | Format-Table -AutoSize -Wrap
 
 # LogGroup 'Loading helper scripts' {
 #     Get-ChildItem -Path (Join-Path -Path $env:GITHUB_ACTION_PATH -ChildPath 'scripts\helpers') -Filter '*.ps1' -Recurse |
