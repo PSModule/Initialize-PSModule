@@ -8,23 +8,9 @@ branding:
 runs:
   using: composite
   steps:
-    - name: Install GitHub
-      shell: pwsh
-      run: |
-        # Install GitHub
-        '::group::Install GitHub'
-        $params = @{
-          Name            = 'GitHub'
-          Repository      = 'PSGallery'
-          TrustRepository = $true
-          Verbose         = $true
-        }
-        Install-PSResource @params
-        Import-Module -Name 'GitHub' -Force -Verbose
-        '::endgroup::'
-
     - name: Initialize-PSModule
-      shell: pwsh
-      run: |
-        # Initialize-PSModule
-        . "$env:GITHUB_ACTION_PATH\scripts\main.ps1" -Verbose
+      uses: PSModule/GitHub-Script@v1
+      with:
+        Script: |
+          # Initialize-PSModule
+          . "${{ github.action_path }}\scripts\main.ps1" -Verbose
