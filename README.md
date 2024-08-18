@@ -22,28 +22,15 @@ The Initialize-PSModule action will prepare the runner for the PSModule framewor
 
 | Module | Description |
 | --- | --- |
-| Utilities | Used by all actions, contains common function and classes such as logging and grouping. |
-| PSSemVer | Used to create an object for the semantic version numbers. Has functionality to compare, and bump versions. |
-| powershell-yaml | Used to parse and serialize YAML files, typically for reading configuration files. |
-| Pester | Used for testing PowerShell code. |
+| GitHub | Used to interact with the GitHub API and GitHub Action workflow commands. |
 | PSScriptAnalyzer | Used to lint and format PowerShell code. |
+| PSSemVer | Used to create an object for the semantic version numbers. Has functionality to compare, and bump versions. |
+| Pester | Used for testing PowerShell code. |
+| Utilities | Used by all actions, contains common function and classes. |
 | platyPS | Used to generate Markdown documentation from PowerShell code. |
-
-It also makes the following environment variables available to the runner:
-
-| Variable | Description |
-| --- | --- |
-| GITHUB_REPOSITORY_NAME | Contains the name of the repository, used to automatically act as the name of the module. |
+| powershell-yaml | Used to parse and serialize YAML files, typically for reading configuration files. |
 
 ## Usage
-
-The action can be configured using the following settings:
-
-| Name | Description | Default | Required |
-| --- | --- | --- | --- |
-| Version | The version of the Utilities module to install. | '' (latest) | false |
-| Prerelease | Whether to install prerelease versions of the Utilities module. | false | false |
-| Shell | The shell to use for running the tests. | pwsh | false |
 
 ## Example
 
@@ -77,6 +64,5 @@ The action is compatible with the following configurations:
 | OS | Shell |
 | --- | --- |
 | windows-latest | pwsh |
-| windows-latest | powershell |
 | macos-latest | pwsh |
 | ubuntu-latest | pwsh |
