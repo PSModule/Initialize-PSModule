@@ -24,3 +24,18 @@ jobs:
 
       - name: Action-Test
         uses: ./
+
+      - name: Run GitHub-script
+        uses: PSModule/GitHub-script@v1
+        with:
+          Script: |
+            LogGroup "Run custom script" {
+                Write-Host "Hello, World!"
+            }
+
+      - name: Run custom script
+        shell: pwsh
+        run: |
+          LogGroup "Run custom script" {
+              Write-Host "Hello, World!"
+          }

@@ -32,6 +32,15 @@ The Initialize-PSModule action will prepare the runner for the PSModule framewor
 
 ## Usage
 
+### Inputs
+
+| Name | Description | Required | Default |
+| - | - | - | - |
+| `Debug` | Enable debug output. | false | `'false'` |
+| `Verbose` | Enable verbose output. | false | `'false'` |
+| `Version` | Specifies the version of the resource to be returned. | false |  |
+| `Prerelease` | Allow prerelease versions if available. | false | `'false'` |
+
 ## Example
 
 The action can be used in a workflow to prepare the runner for the PSModule framework by adding it at the start of the workflow.
