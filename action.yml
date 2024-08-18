@@ -5,46 +5,12 @@ branding:
   icon: loader
   color: gray-dark
 
-inputs:
-  Version:
-    description: The version of the Utilities module to install.
-    required: false
-  Prerelease:
-    description: Whether to install prerelease versions of the Utilities module.
-    required: false
-    default: 'false'
-  Shell:
-    description: The shell to use for running the tests.
-    required: false
-    default: pwsh
-
 runs:
   using: composite
   steps:
-    - name: Run Initialize-PSModule
-      shell: ${{ inputs.Shell }}
-      env:
-        GITHUB_ACTION_INPUT_Version: ${{ inputs.Version }}
-        GITHUB_ACTION_INPUT_Prerelease: ${{ inputs.Prerelease }}
-      run: |
-        # Initialize-PSModule
-        Write-Host '::group::Loading modules'
-        Install-Module -Name 'Microsoft.PowerShell.PSResourceGet' -Force -Verbose
-        Import-Module -Name 'Microsoft.PowerShell.PSResourceGet' -Force -Verbose
-
-        $params = @{
-          Name            = 'Utilities'
-          Repository      = 'PSGallery'
-          TrustRepository = $true
-          PreRelease      = $env:GITHUB_ACTION_INPUT_Prerelease -eq 'true'
-          Verbose         = $true
-        }
-        if (-not [string]::IsNullOrEmpty($env:GITHUB_ACTION_INPUT_Version)) {
-          $params['Version'] = $env:GITHUB_ACTION_INPUT_Version
-        }
-
-        Install-PSResource @params
-        Import-Module -Name 'Utilities' -Force -Verbose
-        Write-Host '::endgroup::'
-
-        . "$env:GITHUB_ACTION_PATH\scripts\main.ps1" -Verbose
+    - name: Initialize-PSModule
+      uses: PSModule/GitHub-Script@v1
+      with:
+        Script: |
+          # Initialize-PSModule
+          . "${{ github.action_path }}\scripts\main.ps1" -Verbose
