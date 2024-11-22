@@ -67,7 +67,9 @@ jobs:
 
 ### Example: Using the env input
 
-The action can be used in a workflow to prepare the runner for the PSModule framework by adding it at the start of the workflow.
+This action is used as a preparation step for the PSModule framework and the `Process-PSModule` reusable workflow.
+As reusable workflows do not allow passing the `env` data in, this is a usefull workaround. Provide the environment variables as a string in the
+`env` input and it will convert the data into environment variables for the job using GitHub Actions commands.
 
 ```yaml
 name: Process-PSModule
@@ -87,6 +89,7 @@ jobs:
         with:
           env: |
             MY_ENV_VAR: ${{ secrets.MY_ENV_VAR }}
+            MY_ENV_VAR2: ${{ secrets.MY_ENV_VAR2 }}
 ```
 
 ## Permissions
