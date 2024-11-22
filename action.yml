@@ -31,7 +31,7 @@ runs:
     - name: Initialize-PSModule
       uses: PSModule/GitHub-Script@v1
       env:
-        GITHUB_ACTION_INPUT_env: ${{ inputs.env }}
+        GITHUB_ACTION_INPUT_env: ${{ toJson(inputs.env) }}
       with:
         Debug: ${{ inputs.Debug }}
         Prerelease: ${{ inputs.Prerelease }}
