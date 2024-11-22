@@ -24,7 +24,7 @@ jobs:
 
       - name: Action-Test
         uses: ./
-        env:
+        with:
           env1: ${{ secrets.TEST_APP_CLIENT_ID }}
           env2: ${{ secrets.TEST_APP_PRIVATE_KEY }}
           env3: ${{ secrets.TEST_FG_PAT }}
