@@ -17,7 +17,7 @@ Get-PSResource -Name $requiredModules -Verbose:$false | Sort-Object -Property Na
     Format-Table -Property Name, Version, Prerelease, Repository -AutoSize -Wrap
 
 LogGroup "Loading environment variables:" {
-    Get-ChildItem -Path env: | Where-Object { $_.Name -like 'GITHUB_ACTION_INPUT_*' } | ForEach-Object {
+    Get-ChildItem -Path env: | Where-Object { $_.Name -like 'GITHUB_ACTION_INPUT_env*' } | ForEach-Object {
         $name = $_.Name -replace '^GITHUB_ACTION_INPUT_'
         $value = $_.Value
         Write-Host "[$name] = [$value]"

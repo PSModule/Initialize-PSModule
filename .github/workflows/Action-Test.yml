@@ -36,7 +36,7 @@ jobs:
           Script: |
             LogGroup "Run custom script" {
                 Write-Host "Hello, World!"
-                "ClientID is : [$env:TEST_APP_CLIENT_ID]"
+                "ClientID is : [$env:env1]"
             }
 
       - name: Run custom script
