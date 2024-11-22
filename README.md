@@ -40,8 +40,11 @@ The Initialize-PSModule action will prepare the runner for the PSModule framewor
 | `Verbose` | Enable verbose output. | false | `'false'` |
 | `Version` | Specifies the version of the resource to be returned. | false |  |
 | `Prerelease` | Allow prerelease versions if available. | false | `'false'` |
+| `env` | Environment variables to set for the script. | false |  |
 
-## Example
+## Examples
+
+### Example: Basic usage
 
 The action can be used in a workflow to prepare the runner for the PSModule framework by adding it at the start of the workflow.
 
@@ -60,6 +63,30 @@ jobs:
 
       - name: Initialize environment
         uses: PSModule/Initialize-PSModule@main
+```
+
+### Example: Using the env input
+
+The action can be used in a workflow to prepare the runner for the PSModule framework by adding it at the start of the workflow.
+
+```yaml
+name: Process-PSModule
+
+on: [push]
+
+jobs:
+  Process-PSModule:
+    name: Process module
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Initialize environment
+        uses: PSModule/Initialize-PSModule@main
+        with:
+          env: |
+            MY_ENV_VAR: ${{ secrets.MY_ENV_VAR }}
 ```
 
 ## Permissions
