@@ -18,8 +18,6 @@ Get-PSResource -Name $requiredModules -Verbose:$false | Sort-Object -Property Na
 
 LogGroup "Loading environment variables:" {
     $envvar = $env:GITHUB_ACTION_INPUT_env
-    Write-Host "Environment variable:"
-    Write-Host $envvar
     $data = ConvertFrom-StringData -StringData $envvar -Delimiter ':'
     $data.GetEnumerator() | ForEach-Object {
         Write-Output "::add-mask::$($_.Value)"
