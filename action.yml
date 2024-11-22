@@ -21,8 +21,35 @@ inputs:
     description: Allow prerelease versions if available.
     required: false
     default: 'false'
-  env:
-    description: Environment variables to set for the script.
+  env1:
+    description: Custom Environment variable to set for the script.
+    required: false
+  env2:
+    description: Custom Environment variable to set for the script.
+    required: false
+  env3:
+    description: Custom Environment variable to set for the script.
+    required: false
+  env4:
+    description: Custom Environment variable to set for the script.
+    required: false
+  env5:
+    description: Custom Environment variable to set for the script.
+    required: false
+  env6:
+    description: Custom Environment variable to set for the script.
+    required: false
+  env7:
+    description: Custom Environment variable to set for the script.
+    required: false
+  env8:
+    description: Custom Environment variable to set for the script.
+    required: false
+  env9:
+    description: Custom Environment variable to set for the script.
+    required: false
+  env10:
+    description: Custom Environment variable to set for the script.
     required: false
 
 runs:
@@ -31,7 +58,16 @@ runs:
     - name: Initialize-PSModule
       uses: PSModule/GitHub-Script@v1
       env:
-        GITHUB_ACTION_INPUT_env: ${{ inputs.env }}
+        GITHUB_ACTION_INPUT_env1: ${{ inputs.env1 }}
+        GITHUB_ACTION_INPUT_env2: ${{ inputs.env2 }}
+        GITHUB_ACTION_INPUT_env3: ${{ inputs.env3 }}
+        GITHUB_ACTION_INPUT_env4: ${{ inputs.env4 }}
+        GITHUB_ACTION_INPUT_env5: ${{ inputs.env5 }}
+        GITHUB_ACTION_INPUT_env6: ${{ inputs.env6 }}
+        GITHUB_ACTION_INPUT_env7: ${{ inputs.env7 }}
+        GITHUB_ACTION_INPUT_env8: ${{ inputs.env8 }}
+        GITHUB_ACTION_INPUT_env9: ${{ inputs.env9 }}
+        GITHUB_ACTION_INPUT_env10: ${{ inputs.env10 }}
       with:
         Debug: ${{ inputs.Debug }}
         Prerelease: ${{ inputs.Prerelease }}
