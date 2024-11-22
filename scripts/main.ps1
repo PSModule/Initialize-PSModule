@@ -20,7 +20,7 @@ LogGroup "Loading environment variables:" {
     $envvar = $env:GITHUB_ACTION_INPUT_env
     $data = ConvertFrom-StringData -StringData $envvar -Delimiter ':'
     $data.GetEnumerator() | ForEach-Object {
-        Write-Output "::add-mask::$($_.Value)"
+        # Write-Output "::add-mask::$($_.Value)"
         Write-Host "[$($_.Name)] = [$($_.Value)]"
         "$($_.Name)=$($_.Value)" | Out-File -FilePath $env:GITHUB_ENV -Append
     }
