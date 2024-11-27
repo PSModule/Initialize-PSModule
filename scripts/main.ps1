@@ -3,12 +3,12 @@
 [CmdletBinding()]
 param()
 $requiredModules = @{
-    Utilities                      = @{}
-    'powershell-yaml'              = @{}
-    PSSemVer                       = @{}
-    Pester                         = @{}
-    PSScriptAnalyzer               = @{}
-    PlatyPS                        = @{}
+    Utilities         = @{}
+    'powershell-yaml' = @{}
+    PSSemVer          = @{}
+    Pester            = @{}
+    PSScriptAnalyzer  = @{}
+    PlatyPS           = @{}
     # 'Microsoft.PowerShell.PlatyPS' = @{
     #     Prerelease = $true
     # }
