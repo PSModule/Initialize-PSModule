@@ -3,15 +3,15 @@
 [CmdletBinding()]
 param()
 $requiredModules = @{
-    Utilities                      = @{}
-    'powershell-yaml'              = @{}
-    PSSemVer                       = @{}
-    Pester                         = @{}
-    PSScriptAnalyzer               = @{}
-    # PlatyPS                        = @{}
-    'Microsoft.PowerShell.PlatyPS' = @{
-        Prerelease = $true
-    }
+    Utilities         = @{}
+    'powershell-yaml' = @{}
+    PSSemVer          = @{}
+    Pester            = @{}
+    PSScriptAnalyzer  = @{}
+    PlatyPS           = @{}
+    # 'Microsoft.PowerShell.PlatyPS' = @{
+    #     Prerelease = $true
+    # }
 }
 
 $requiredModules.GetEnumerator() | Sort-Object | ForEach-Object {
