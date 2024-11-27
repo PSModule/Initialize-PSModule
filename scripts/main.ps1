@@ -2,22 +2,25 @@
 
 [CmdletBinding()]
 param()
-
-$requiredModules = 'Utilities', 'powershell-yaml', 'PSSemVer', 'Pester', 'PSScriptAnalyzer' #, 'PlatyPS'
-$requiredPreviewModules = 'Microsoft.PowerShell.PlatyPS'
-
-$requiredModules | Sort-Object | ForEach-Object {
-    $moduleName = $_
-    LogGroup "Installing prerequisite: [$moduleName]" {
-        Install-PSResource -Name $moduleName -TrustRepository -Repository PSGallery
-        Write-Verbose (Get-PSResource -Name $moduleName | Select-Object * | Out-String)
+$requiredModules = @{
+    Utilities                      = @{}
+    'powershell-yaml'              = @{}
+    PSSemVer                       = @{}
+    Pester                         = @{}
+    PSScriptAnalyzer               = @{}
+    PlatyPS                        = @{}
+    'Microsoft.PowerShell.PlatyPS' = @{
+        Prerelease = $true
     }
 }
-$requiredPreviewModules | Sort-Object | ForEach-Object {
-    $moduleName = $_
-    LogGroup "Installing prerequisite: [$moduleName] (prerelease)" {
-        Install-PSResource -Name $moduleName -TrustRepository -Repository PSGallery -Prerelease
-        Write-Verbose (Get-PSResource -Name $moduleName | Select-Object * | Out-String)
+
+$requiredModules.GetEnumerator() | Sort-Object | ForEach-Object {
+    $name = $_.Key
+    $settings = $_.Value
+    LogGroup "Installing prerequisite: [$name]" {
+        Install-PSResource -Name $name -TrustRepository -Repository PSGallery @settings
+        Write-Verbose (Get-PSResource -Name $name | Select-Object * | Out-String)
+        Write-Verbose (Get-Command -Module $name | Out-String)
     }
 }
 
