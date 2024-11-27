@@ -8,10 +8,10 @@ $requiredModules = @{
     PSSemVer                       = @{}
     Pester                         = @{}
     PSScriptAnalyzer               = @{}
-    # PlatyPS                        = @{}
-    'Microsoft.PowerShell.PlatyPS' = @{
-        Prerelease = $true
-    }
+    PlatyPS                        = @{}
+    # 'Microsoft.PowerShell.PlatyPS' = @{
+    #     Prerelease = $true
+    # }
 }
 
 $requiredModules.GetEnumerator() | Sort-Object | ForEach-Object {
