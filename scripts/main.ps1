@@ -8,7 +8,7 @@ $requiredModules = @{
     PSSemVer                       = @{}
     Pester                         = @{}
     PSScriptAnalyzer               = @{}
-    PlatyPS                        = @{}
+    # PlatyPS                        = @{}
     'Microsoft.PowerShell.PlatyPS' = @{
         Prerelease = $true
     }
@@ -24,5 +24,5 @@ $requiredModules.GetEnumerator() | Sort-Object | ForEach-Object {
     }
 }
 
-Get-PSResource -Name $requiredModules -Verbose:$false | Sort-Object -Property Name |
+$requiredModules.Keys | Get-InstalledPSResource -Verbose:$false | Sort-Object -Property Name |
     Format-Table -Property Name, Version, Prerelease, Repository -AutoSize -Wrap
