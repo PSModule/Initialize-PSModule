@@ -3,7 +3,7 @@
 [CmdletBinding()]
 param()
 
-$requiredModules = 'Utilities', 'powershell-yaml', 'PSSemVer', 'Pester', 'PSScriptAnalyzer'
+$requiredModules = 'Utilities', 'powershell-yaml', 'PSSemVer', 'Pester', 'PSScriptAnalyzer' #, 'PlatyPS'
 $requiredPreviewModules = 'Microsoft.PowerShell.PlatyPS'
 
 $requiredModules | Sort-Object | ForEach-Object {
