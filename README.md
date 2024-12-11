@@ -36,10 +36,10 @@ The Initialize-PSModule action will prepare the runner for the PSModule framewor
 
 | Name | Description | Required | Default |
 | - | - | - | - |
-| `Debug` | Enable debug output. | false | `'false'` |
-| `Verbose` | Enable verbose output. | false | `'false'` |
-| `Version` | Specifies the version of the resource to be returned. | false |  |
-| `Prerelease` | Allow prerelease versions if available. | false | `'false'` |
+| `Debug` | Enable debug output. | `false` | `'false'` |
+| `Verbose` | Enable verbose output. | `false` | `'false'` |
+| `Version` | Specifies the version of the GitHub module to be installed. The value must be an exact version. | `false` | |
+| `Prerelease` | Allow prerelease versions if available. | `false` | `'false'` |
 
 ## Example
 
