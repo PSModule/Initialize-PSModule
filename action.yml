@@ -15,7 +15,7 @@ inputs:
     required: false
     default: 'false'
   Version:
-    description: Specifies the version of the resource to be returned.
+    description: Specifies the version of the GitHub module to be installed. The value must be an exact version.
     required: false
   Prerelease:
     description: Allow prerelease versions if available.
@@ -34,4 +34,4 @@ runs:
         Version: ${{ inputs.Version }}
         Script: |
           # Initialize-PSModule
-          . "${{ github.action_path }}\scripts\main.ps1" -Verbose
+          . "${{ github.action_path }}\scripts\main.ps1"

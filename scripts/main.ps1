@@ -2,6 +2,7 @@
 
 [CmdletBinding()]
 param()
+
 $requiredModules = @{
     Utilities         = @{}
     'powershell-yaml' = @{}
