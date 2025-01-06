@@ -20,9 +20,24 @@ $requiredModules.GetEnumerator() | Sort-Object | ForEach-Object {
     $name = $_.Key
     $settings = $_.Value
     LogGroup "Installing prerequisite: [$name]" {
-        Install-PSResource -Name $name -TrustRepository -Repository PSGallery @settings
-        Write-Verbose (Get-PSResource -Name $name | Select-Object * | Out-String)
-        Write-Verbose (Get-Command -Module $name | Out-String)
+        $Count = 5
+        $Delay = 10
+        for ($i = 1; $i -le $Count; $i++) {
+            try {
+                Install-PSResource -Name $name -TrustRepository -Repository PSGallery @settings
+                break
+            } catch {
+                if ($i -eq $Count) {
+                    throw $_
+                }
+                Start-Sleep -Seconds $Delay
+            }
+        }
+        Write-Host "Installed module: [$name]"
+        Write-Host (Get-PSResource -Name $name | Select-Object * | Out-String)
+
+        Write-Host "Module commands:"
+        Write-Host (Get-Command -Module $name | Out-String)
     }
 }
 
