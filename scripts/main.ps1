@@ -22,12 +22,12 @@ $requiredModules.GetEnumerator() | Sort-Object | ForEach-Object {
     LogGroup "Installing prerequisite: [$name]" {
         $Count = 5
         $Delay = 10
-        for ($i = 0; $i -lt $Count; $i++) {
+        for ($i = 1; $i -lt $Count; $i++) {
             try {
                 Install-PSResource -Name $name -TrustRepository -Repository PSGallery @settings
                 break
             } catch {
-                if ($i -eq $Count - 1) {
+                if ($i -eq $Count) {
                     throw $_
                 }
                 Start-Sleep -Seconds $Delay
