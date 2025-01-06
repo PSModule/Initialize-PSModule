@@ -27,11 +27,9 @@ $requiredModules.GetEnumerator() | Sort-Object | ForEach-Object {
                 Install-PSResource -Name $name -TrustRepository -Repository PSGallery @settings
                 break
             } catch {
-                Write-Warning "Installing $name failed with error: $_"
                 if ($i -eq $Count - 1) {
-                    throw
+                    throw $_
                 }
-                Write-Warning "Retrying in $Delay seconds..."
                 Start-Sleep -Seconds $Delay
             }
         }
