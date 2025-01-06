@@ -20,7 +20,21 @@ $requiredModules.GetEnumerator() | Sort-Object | ForEach-Object {
     $name = $_.Key
     $settings = $_.Value
     LogGroup "Installing prerequisite: [$name]" {
-        Install-PSResource -Name $name -TrustRepository -Repository PSGallery @settings
+        $Count = 5
+        $Delay = 10
+        for ($i = 0; $i -lt $Count; $i++) {
+            try {
+                Install-PSResource -Name $name -TrustRepository -Repository PSGallery @settings
+                break
+            } catch {
+                Write-Warning "Installing $name failed with error: $_"
+                if ($i -eq $Count - 1) {
+                    throw
+                }
+                Write-Warning "Retrying in $Delay seconds..."
+                Start-Sleep -Seconds $Delay
+            }
+        }
         Write-Verbose (Get-PSResource -Name $name | Select-Object * | Out-String)
         Write-Verbose (Get-Command -Module $name | Out-String)
     }
