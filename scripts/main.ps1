@@ -5,6 +5,7 @@ param()
 
 $requiredModules = @{
     Utilities         = @{}
+    Retry             = @{}
     'powershell-yaml' = @{}
     PSSemVer          = @{}
     Pester            = @{}
@@ -36,7 +37,7 @@ $requiredModules.GetEnumerator() | Sort-Object | ForEach-Object {
         Write-Host "Installed module: [$name]"
         Write-Host (Get-PSResource -Name $name | Select-Object * | Out-String)
 
-        Write-Host "Module commands:"
+        Write-Host 'Module commands:'
         Write-Host (Get-Command -Module $name | Out-String)
     }
 }
