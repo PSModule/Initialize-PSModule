@@ -34,4 +34,4 @@ runs:
         Version: ${{ inputs.Version }}
         Script: |
           # Initialize-PSModule
-          . "${{ github.action_path }}\scripts\main.ps1"
+          ${{ github.action_path }}\scripts\main.ps1
