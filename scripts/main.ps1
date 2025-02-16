@@ -34,11 +34,11 @@ $requiredModules.GetEnumerator() | Sort-Object | ForEach-Object {
                 Start-Sleep -Seconds $Delay
             }
         }
-        Write-Host "Installed module: [$name]"
-        Write-Host (Get-PSResource -Name $name | Select-Object * | Out-String)
+        Write-Output "Installed module: [$name]"
+        Write-Output (Get-PSResource -Name $name | Select-Object * | Out-String)
 
-        Write-Host 'Module commands:'
-        Write-Host (Get-Command -Module $name | Out-String)
+        Write-Output 'Module commands:'
+        Write-Output (Get-Command -Module $name | Out-String)
     }
 }
 
