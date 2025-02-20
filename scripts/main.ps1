@@ -4,6 +4,7 @@
 param()
 
 $requiredModules = @{
+    Hashtable         = @{}
     Utilities         = @{}
     Retry             = @{}
     'powershell-yaml' = @{}
