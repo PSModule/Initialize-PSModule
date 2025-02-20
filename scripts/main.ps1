@@ -12,6 +12,7 @@ $requiredModules = @{
     PSScriptAnalyzer  = @{}
     PlatyPS           = @{}
     MarkdownPS        = @{}
+    Hashtable         = @{}
     # 'Microsoft.PowerShell.PlatyPS' = @{
     #     Prerelease = $true
     # }
