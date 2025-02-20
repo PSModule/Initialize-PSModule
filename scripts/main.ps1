@@ -4,7 +4,6 @@
 param()
 
 $requiredModules = @{
-    Hashtable         = @{}
     Utilities         = @{}
     Retry             = @{}
     'powershell-yaml' = @{}
@@ -13,6 +12,7 @@ $requiredModules = @{
     PSScriptAnalyzer  = @{}
     PlatyPS           = @{}
     MarkdownPS        = @{}
+    Hashtable         = @{}
     # 'Microsoft.PowerShell.PlatyPS' = @{
     #     Prerelease = $true
     # }
