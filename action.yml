@@ -21,6 +21,10 @@ inputs:
     description: Allow prerelease versions if available.
     required: false
     default: 'false'
+  WorkingDirectory:
+    description: The working directory where the script will run from.
+    required: false
+    default: ${{ github.workspace }}
 
 runs:
   using: composite
@@ -32,6 +36,7 @@ runs:
         Prerelease: ${{ inputs.Prerelease }}
         Verbose: ${{ inputs.Verbose }}
         Version: ${{ inputs.Version }}
+        WorkingDirectory: ${{ inputs.WorkingDirectory }}
         Script: |
           # Initialize-PSModule
           ${{ github.action_path }}\scripts\main.ps1
