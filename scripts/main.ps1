@@ -36,12 +36,12 @@ $requiredModules.GetEnumerator() | Sort-Object | ForEach-Object {
             }
         }
         Write-Output "Installed module: [$name]"
-        Write-Output (Get-PSResource -Name $name | Select-Object * | Out-String)
+        Get-PSResource -Name $name | Select-Object * | Out-String
 
         Write-Output 'Module commands:'
-        Write-Output (Get-Command -Module $name | Out-String)
+        Get-Command -Module $name | Out-String
     }
 }
 
 $requiredModules.Keys | Get-InstalledPSResource -Verbose:$false | Sort-Object -Property Name |
-    Format-Table -Property Name, Version, Prerelease, Repository -AutoSize -Wrap
+    Format-Table -Property Name, Version, Prerelease, Repository -AutoSize | Out-String
