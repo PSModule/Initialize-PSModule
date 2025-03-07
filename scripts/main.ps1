@@ -43,5 +43,5 @@ $requiredModules.GetEnumerator() | Sort-Object | ForEach-Object {
     }
 }
 
-$requiredModules.Keys | Get-InstalledPSResource -Verbose:$false | Sort-Object -Property Name |
+Get-InstalledPSResource -Verbose:$false | Sort-Object -Property Name |
     Format-Table -Property Name, Version, Prerelease, Repository -AutoSize | Out-String
