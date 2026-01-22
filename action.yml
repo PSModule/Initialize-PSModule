@@ -30,7 +30,7 @@ runs:
   using: composite
   steps:
     - name: Initialize-PSModule
-      uses: PSModule/GitHub-Script@v1
+      uses: PSModule/GitHub-Script@2010983167dc7a41bcd84cb88e698ec18eccb7ca # v1.7.8
       with:
         Debug: ${{ inputs.Debug }}
         Prerelease: ${{ inputs.Prerelease }}
