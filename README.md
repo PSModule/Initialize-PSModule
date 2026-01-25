@@ -6,11 +6,11 @@ This GitHub Action is a part of the [PSModule framework](https://github.com/PSMo
 
 ## Specifications and practices
 
-Initiate-PSModule follows:
+Initialize-PSModule follows:
 
 - [SemVer 2.0.0 specifications](https://semver.org)
 - [GitHub Flow specifications](https://docs.github.com/en/get-started/using-github/github-flow)
-- [Continiuous Delivery practices](https://en.wikipedia.org/wiki/Continuous_delivery)
+- [Continuous Delivery practices](https://en.wikipedia.org/wiki/Continuous_delivery)
 
 ... and supports the following practices in the PSModule framework:
 
