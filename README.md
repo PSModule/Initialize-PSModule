@@ -6,11 +6,11 @@ This GitHub Action is a part of the [PSModule framework](https://github.com/PSMo
 
 ## Specifications and practices
 
-Initiate-PSModule follows:
+Initialize-PSModule follows:
 
 - [SemVer 2.0.0 specifications](https://semver.org)
 - [GitHub Flow specifications](https://docs.github.com/en/get-started/using-github/github-flow)
-- [Continiuous Delivery practices](https://en.wikipedia.org/wiki/Continuous_delivery)
+- [Continuous Delivery practices](https://en.wikipedia.org/wiki/Continuous_delivery)
 
 ... and supports the following practices in the PSModule framework:
 
@@ -40,7 +40,7 @@ The Initialize-PSModule action will prepare the runner for the PSModule framewor
 | `Verbose` | Enable verbose output. | `false` | `'false'` |
 | `Version` | Specifies the version of the GitHub module to be installed. The value must be an exact version. | `false` | |
 | `Prerelease` | Allow prerelease versions if available. | `false` | `'false'` |
-| `WorkingDirectory` | The working directory where the script runs. | `false`    | `${{ github.workspace }}` |
+| `WorkingDirectory` | The working directory where the script runs. | `false` | `${{ github.workspace }}` |
 
 ## Example
 
