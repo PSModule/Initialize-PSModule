@@ -38,7 +38,7 @@ The Initialize-PSModule action will prepare the runner for the PSModule framewor
 | - | - | - | - |
 | `Debug` | Enable debug output. | `false` | `'false'` |
 | `Verbose` | Enable verbose output. | `false` | `'false'` |
-| `Version` | Specifies the version of the GitHub module to be installed. The value must be an exact version. | `false` | |
+| `Version` | Specifies the version of the GitHub module to be installed. Accepts an exact version or a NuGet version range (for example '[1.2.0, 2.0.0)'). | `false` | |
 | `Prerelease` | Allow prerelease versions if available. | `false` | `'false'` |
 | `WorkingDirectory` | The working directory where the script runs. | `false` | `${{ github.workspace }}` |
 
